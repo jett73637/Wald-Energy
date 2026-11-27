@@ -1,0 +1,59 @@
+name: ESP32-C3 firmware build
+
+on:
+  push:
+    branches: ["main", "ci/**"]
+    paths:
+      - "firmware/**"
+      - "platformio.ini"
+      - ".github/workflows/esp32-build.yml"
+  pull_request:
+    paths:
+      - "firmware/**"
+      - "platformio.ini"
+      - ".github/workflows/esp32-build.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check firmware source
+        id: source
+        shell: bash
+        run: |
+          if [ -f firmware/src/main.cpp ] || compgen -G "firmware/src/*.ino" > /dev/null; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::No firmware source found yet. Build is intentionally skipped until firmware/src/main.cpp or firmware/src/*.ino is committed."
+          fi
+
+      - name: Set up Python
+        if: steps.source.outputs.present == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install PlatformIO
+        if: steps.source.outputs.present == 'true'
+        run: pip install platformio
+
+      - name: Compile ESP32-C3
+        if: steps.source.outputs.present == 'true'
+        run: pio run
+
+      - name: Upload firmware artifact
+        if: steps.source.outputs.present == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: wald-energy-esp32c3-firmware
+          path: .pio/build/*/firmware.bin
+          if-no-files-found: error
+          retention-days: 14
