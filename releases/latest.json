@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "version": "",
+  "target": "esp32c3",
+  "size": 0,
+  "sha256": "",
+  "url": "",
+  "signature_algorithm": "ECDSA-P256-SHA256",
+  "signature": ""
+}
