@@ -1,10 +1,10 @@
 {
   "schema": 1,
-  "version": "3.1.1",
+  "version": "3.1.2",
   "target": "esp32c3",
-  "size": 1276656,
-  "sha256": "5469b0c7f7cdc87cae13eec6fa0bb5d97a2977097e8d53c7b7089d775187c02c",
-  "url": "https://github.com/jett73637/Wald-Energy/releases/download/v3.1.1/firmware.bin",
+  "size": 1276688,
+  "sha256": "618df5ed8b67ad7a33f4a01aa4ed39a1438d40a5fb09357aec8b69eee47d19ae",
+  "url": "https://github.com/jett73637/Wald-Energy/releases/download/v3.1.2/firmware.bin",
   "signature_algorithm": "ECDSA-P256-SHA256",
-  "signature": "MEYCIQDKDN6vEE28DlFzz02Qzt+TM12pEZIt4QI7ZFSst3r5jwIhAKLC99y3Aj+nP0As6BPP1QVVrGhRe1SfZA07BztOeWm+"
+  "signature": "MEUCIQCxC+coPPlfkd2Dgk0vW6bhqhwY8JttPpYLHkWS9dgqRAIgJwWhbBNHVSLay/sn0uqtsuERBGciflQnJiYmriHdbvQ="
 }
